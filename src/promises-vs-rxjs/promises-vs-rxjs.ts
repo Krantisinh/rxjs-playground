@@ -11,6 +11,7 @@ import {
 } from "./apis";
 import { Image, Tenant, User } from "./model";
 
+// With Promises
 function fetchImages() {
   const images: Promise<Image[]> = getTenant(2)
     .then((tenant) => getUsers(tenant.id))
@@ -22,6 +23,7 @@ function fetchImages() {
 
 fetchImages();
 
+// With async-await
 async function fetchImagesAsync() {
   const tenant: Tenant = await getTenant(2);
   const users: User[] = await getUsers(tenant.id);
@@ -37,6 +39,7 @@ async function fetchImagesAsync() {
 
 fetchImagesAsync();
 
+// With RxJS
 getTenant$(2)
   .pipe(
     switchMap((tenant: Tenant) =>
